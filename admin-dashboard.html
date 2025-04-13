@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header class="navbar">
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="#">Token History</a></li>
+        <li><a href="#">Login Logs</a></li>
+        <li><a href="upload.html"> Upload</a></li>
+        <li><a href="login.html" id="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-message">
+      <h2>Hello, Welcome Admin!</h2>
+    </section>
+
+    <section class="token-gen">
+      <h2>Generate Token</h2>
+      <input type="text" id="tokenUsername" placeholder="Enter Username" />
+      <select id="tokenDuration">
+        <option value="1h">1 Hour</option>
+        <option value="2h">2 Hours</option>
+        <option value="12h">12 Hours</option>
+        <option value="1d">1 Day</option>
+        <option value="2d">2 Days</option>
+        <option value="7d">7 Days</option>
+      </select>
+      <button id="generateTokenBtn">Generate</button>
+      <p id="token-status"></p>
+    </section>
+
+    <section class="recent">
+      <h2>Recent Tokens</h2>
+      <div id="recent-tokens">Loading...</div>
+    </section>
+
+    <section class="recent">
+      <h2>Recent Logins</h2>
+      <div id="recent-logins">Loading...</div>
+    </section>
+  </main>
+
+  <script src="admindashboard.js" defer></script>
+</body>
+</html>

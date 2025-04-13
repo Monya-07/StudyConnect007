@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Connect Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6a11cb;
+      --secondary: #4a09a0;
+      --bg-light: #f5f5f5;
+      --bg-dark: #1a1a1a;
+      --text-dark: #222;
+      --text-light: #eee;
+      --card-bg: #ffffff;
+      --card-dark-bg: #2b2b2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 70px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .header h1 {
+      font-size: 22px;
+    }
+
+    .header .profile img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .sidebar-toggle {
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .search-container {
+      padding: 1rem;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      transition: 0.3s;
+      outline: none;
+    }
+
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 1rem;
+    }
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  height: 180px;         /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+   .card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .dark-mode .card {
+      background: var(--card-dark-bg);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 0;
+      z-index: 999;
+    }
+
+    .bottom-nav a {
+      color: white;
+      font-size: 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .chat-box {
+      position: fixed;
+      bottom: 80px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      z-index: 1001;
+    }
+
+    .chat-box:hover {
+      background-color: var(--secondary);
+    }
+
+    .chat-modal {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      height: 420px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      z-index: 1002;
+    }
+
+    .dark-mode .chat-modal {
+      background: var(--card-dark-bg);
+      color: var(--text-light);
+    }
+
+    .chat-modal.show {
+      display: block;
+    }
+
+    .chat-modal-header {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .chat-modal-body {
+      height: 70%;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+
+    .chat-modal-footer input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      height: 100%;
+      width: 250px;
+      background: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      transition: left 0.3s ease;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 15px 0;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 998;
+    }
+
+    #overlay.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    <h1>Study Connect</h1>
+    <div class="profile">
+      <img src="https://i.pravatar.cc/100" alt="User">
+    </div>
+  </div>
+
+  <div class="search-container"><br>
+    <input type="text" id="search" placeholder="Search..." onkeyup="filterDashboard()">
+  </div>
+
+  <div class="dashboard-container" id="dashboard">
+    <a href="notes.html"><div class="card"><img src="https://img.icons8.com/fluency/96/note.png"/><h3>View Notes</h3></div></a>
+    <a href="videos.html"><div class="card"><img src="https://img.icons8.com/fluency/96/video.png"/><h3>Watch Videos</h3></div></a>
+   <!-- 
+    <a href="#"><div class="card"><img src="https://img.icons8.com/fluency/96/pdf.png"/><h3>Download PDFs</h3></div></a>
+    -->
+    <a href="assignments.html"><div class="card"><img src="https://img.icons8.com/fluency/96/task.png"/><h3>Assignments</h3></div></a>
+    
+    <!--
+    <a href="#"><div class="card"><img src="https://img.icons8.com/fluency/96/question-mark.png"/><h3>Practice Quizzes</h3></div></a>
+    -->
+    <a href="exams.html"><div class="card"><img src="https://img.icons8.com/fluency/96/calendar.png"/><h3>Upcoming Exams</h3></div></a>
+    <a href="projects.html"><div class="card"><img src="https://img.icons8.com/fluency/96/project.png"/><h3>Projects</h3></div></a>
+    <a href="manuals.html"><div class="card"><img src="https://img.icons8.com/fluency/96/book.png"/><h3>Manuals</h3></div></a>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="#">Home</a>
+    <a href="#" onclick="toggleDarkMode()">Dark</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+
+  <div class="chat-box" onclick="toggleChatModal()">💬</div>
+
+  <div class="chat-modal" id="chat-modal">
+    <div class="chat-modal-header">Chat with Support</div>
+    <div class="chat-modal-body">
+      <div>How can we assist you today?</div>
+    </div>
+    <div class="chat-modal-footer">
+      <input type="text" placeholder="Type a message..." id="chat-input">
+    </div>
+  </div>
+
+  <div id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Notes</a>
+    <a href="#">Videos</a>
+    <a href="#">PDFs</a>
+    <a href="#">Assignments</a>
+    <a href="#">Quizzes</a>
+    <a href="#">Exams</a>
+    <a href="#">Notifications</a>
+    <a href="#">Calendar</a>
+    <a href="#">Leaderboard</a>
+    <a href="#">Feedback</a>
+  </div>
+
+  <script>
+    if (localStorage.getItem('isAuthenticated') !== 'true') {
+      window.location.href = "index.html";
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function logout() {
+      localStorage.removeItem('isAuthenticated');
+      alert("Logged out!");
+      window.location.href = "index.html";
+    }
+
+    function filterDashboard() {
+      let query = document.getElementById('search').value.toLowerCase();
+      let items = document.querySelectorAll('.dashboard-container a');
+      items.forEach(link => {
+        const title = link.innerText.toLowerCase();
+        link.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function toggleChatModal() {
+      const modal = document.getElementById('chat-modal');
+      modal.classList.toggle('show');
+      if (modal.classList.contains('show')) {
+        setTimeout(() => document.getElementById('chat-input').focus(), 200);
+      }
+    }
+  </script>
+</body>
+</html>

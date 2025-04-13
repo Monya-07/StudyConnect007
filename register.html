@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .register-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .register-box input,
+    .register-box select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .register-box button {
+      width: 100%;
+      padding: 12px;
+      background: #0072ff;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .register-box button:hover {
+      background: #005bd1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h2>Request Account</h2>
+    <input type="text" placeholder="Full Name" id="name" required>
+
+    <select id="branch" required>
+      <option value="" disabled selected>Select Branch</option>
+      <option value="CO">Computer (CO)</option>
+      <option value="IF">Information Technology (IF)</option>
+      <option value="AN">Artificial Intelligence (AN)</option>
+    </select>
+
+    <input type="text" placeholder="WhatsApp Number" id="mobile" required>
+    <input type="email" placeholder="Email ID" id="email" required>
+
+    <select id="validity" required>
+      <option value="" disabled selected>Select Token Validity</option>
+      <option value="1">1 Day</option>
+      <option value="2">2 Days</option>
+      <option value="7">7 Days</option>
+    </select>
+
+    <button onclick="submitForm()">Submit Request</button>
+  </div>
+
+  <script>
+    function submitForm() {
+  const name = document.getElementById('name').value;
+  const branch = document.getElementById('branch').value;
+  const mobile = document.getElementById('mobile').value;
+  const email = document.getElementById('email').value;
+  const validity = document.getElementById('validity').value;
+
+  if (name && branch && mobile && email && validity) {
+    const formData = {
+      name,
+      branch,
+      mobile,
+      email,
+      validity
+    };
+
+    fetch("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.text())
+    .then(data => {
+      alert("Request submitted! You'll receive your token soon.");
+    })
+    .catch(err => {
+      alert("Error submitting form: " + err.message);
+    });
+
+  } else {
+    alert("Please fill in all fields.");
+  }
+}
+  </script>
+
+</body>
+</html>

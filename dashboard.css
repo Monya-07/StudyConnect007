@@ -1,0 +1,169 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  color: #2c3e50;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #1a1a2e;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.navbar nav ul li a:hover,
+.navbar nav ul li a.active {
+  background-color: #00f7ff;
+  color: #1a1a2e;
+  font-weight: 500;
+}
+
+/* Welcome Message */
+.welcome-message {
+  background-color: #d9ecff;
+  padding: 1rem 2rem;
+  margin: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.welcome-message h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #1a1a2e;
+}
+
+/* Main Dashboard Layout */
+.dashboard {
+  padding: 2rem;
+}
+
+/* Token Generator */
+.token-gen {
+  background: white;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.token-gen h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #1a1a2e;
+}
+
+.token-gen select {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  outline: none;
+}
+
+.token-gen button {
+  padding: 0.5rem 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.token-gen button:hover {
+  background-color: #0056b3;
+}
+
+#token-status {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: green;
+}
+
+/* Recent Tokens & Logins */
+.recent {
+  background: white;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.recent h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #1a1a2e;
+}
+
+#recent-tokens,
+#recent-logins {
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navbar nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .navbar nav ul li a {
+    width: 100%;
+    display: block;
+  }
+  
+  .dashboard {
+    padding: 1rem;
+  }
+  
+  .welcome-message {
+    margin: 1rem;
+  }
+  
+  .token-gen,
+  .recent {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}

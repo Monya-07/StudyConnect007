@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
+  overflow-x: hidden;
+}
+
+.notes-container img {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 20px auto;
+}
+
+/* Centered image watermark */
+#watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('logo.png') no-repeat center center;
+  background-size: 300px;
+  width: 300px;
+  height: 300px;
+  opacity: 0.5;
+  z-index: 9999;
+  pointer-events: none;
+}

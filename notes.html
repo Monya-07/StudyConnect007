@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notes | Study Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6a11cb;
+      --secondary: #4a09a0;
+      --bg-light: #f9f9f9;
+      --bg-dark: #1a1a1a;
+      --text-dark: #222;
+      --text-light: #eee;
+      --card-bg: #ffffff;
+      --card-dark-bg: #2b2b2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding-top: 60px;
+      padding-bottom: 70px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .section {
+      padding: 20px;
+      width: 100%;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .notes-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .dark-mode .card {
+      background: var(--card-dark-bg);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 999;
+    }
+
+    .bottom-nav a {
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .section-content {
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Study Connect - Notes</div>
+
+  <!-- Semester Sections -->
+  <div class="section">
+    <h2 onclick="toggleSection('sem1')">First Year - Semester 1</h2>
+    <div class="notes-container section-content" id="sem1">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>Maths - 311002</h3>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>English - 311001</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleSection('sem2')">First Year - Semester 2</h2>
+    <div class="notes-container section-content" id="sem2">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>Physics - 312004</h3>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>Programming - 312005</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleSection('sem3')">Second Year - Semester 3</h2>
+    <div class="notes-container section-content" id="sem3">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>CN - 421002</h3>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>OS - 421003</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleSection('sem4')">Second Year - Semester 4</h2>
+    <div class="notes-container section-content" id="sem4">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>DBMS - 422002</h3>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>DSA - 422003</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleSection('sem5')">Third Year - Semester 5</h2>
+    <div class="notes-container section-content" id="sem5">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>Cyber Law - 531002</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 onclick="toggleSection('sem6')">Third Year - Semester 6</h2>
+    <div class="notes-container section-content" id="sem6">
+      <div class="card">
+        <img src="https://img.icons8.com/fluency/96/book.png" />
+        <h3>Project - 532001</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html">Home</a>
+    <a href="#" onclick="toggleDarkMode()">Dark</a>
+    <a href="index.html">Logout</a>
+  </div>
+
+  <script>
+      if (localStorage.getItem('isAuthenticated') !== 'true') {
+      window.location.href = "index.html";
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

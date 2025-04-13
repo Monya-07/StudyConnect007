@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+    .header {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logout-btn {
+      background: white;
+      color: #0072ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .container {
+      padding: 30px;
+    }
+    .semester-select {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .semester-select button {
+      padding: 10px;
+      border: none;
+      background: #0072ff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+    }
+    .card:hover {
+      background: #e8f0ff;
+    }
+    .dark-mode {
+      background: #1e1e1e;
+      color: #ccc;
+    }
+    .dark-mode .card {
+      background: #2c2c2c;
+      color: #fff;
+    }
+    .toggle-dark {
+      margin-left: auto;
+      cursor: pointer;
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Student Dashboard</h1>
+    <button class="toggle-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>  <div class="container">
+    <div class="semester-select">
+      <button onclick="loadSemester('Y1S1')">Year 1 - Sem 1</button>
+      <button onclick="loadSemester('Y1S2')">Year 1 - Sem 2</button>
+      <button onclick="loadSemester('Y2S1')">Year 2 - Sem 1</button>
+      <button onclick="loadSemester('Y2S2')">Year 2 - Sem 2</button>
+    </div><div class="section-grid" id="dashboardSections"></div>
+
+  </div>  <script>
+    const features = {
+      Y1S1: ["Notes", "Videos", "PDFs", "Assignments", "Quizzes", "Exams"],
+      Y1S2: ["Notes", "Videos", "PDFs", "Assignments", "Projects"],
+      Y2S1: ["Notes", "Quizzes", "Assignments", "Leaderboard"],
+      Y2S2: ["Notes", "Calendar", "Feedback", "Token Renewal"]
+    };
+
+    function loadSemester(semKey) {
+      const container = document.getElementById('dashboardSections');
+      container.innerHTML = '';
+      features[semKey].forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerText = item;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script></body>
+</html>

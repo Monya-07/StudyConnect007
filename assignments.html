@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assignments | Study Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6a11cb;
+      --secondary: #4a09a0;
+      --bg-light: #f5f5f5;
+      --bg-dark: #1a1a1a;
+      --text-dark: #222;
+      --text-light: #eee;
+      --card-bg: #ffffff;
+      --card-dark-bg: #2b2b2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      min-height: 100vh;
+      padding-top: 60px;
+      padding-bottom: 70px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .header h1 {
+      font-size: 22px;
+    }
+
+    .search-container {
+      padding: 1rem;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      transition: 0.3s;
+      outline: none;
+    }
+
+    .manuals-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      object-fit: contain;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .dark-mode .card {
+      background: var(--card-dark-bg);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 12px 0;
+      z-index: 999;
+    }
+
+    .bottom-nav a {
+      color: white;
+      font-size: 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Study Connect - Assignments</h1>
+  </div>
+
+  <div class="search-container">
+    <input type="text" placeholder="Search assignments..." onkeyup="filterAssignments()">
+  </div>
+
+  <div class="manuals-container" id="assignments">
+    <div class="card">
+      <img src="https://img.icons8.com/fluency/96/task.png" />
+      <h3>ASSIGNMENT 1</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/fluency/96/task.png" />
+      <h3>Assignment 2</h3>
+    </div>
+    <div class="card">
+      <img src="https://img.icons8.com/fluency/96/task.png" />
+      <h3>Assignment 3</h3>
+    </div>
+    <!-- Add more assignment cards as needed -->
+  </div>
+
+  <div class="bottom-nav">
+    <a href="dashboard.html">Home</a>
+    <a href="#" onclick="toggleDarkMode()">Dark</a>
+    <a href="index.html">Logout</a>
+  </div>
+
+  <script>
+      if (localStorage.getItem('isAuthenticated') !== 'true') {
+      window.location.href = "index.html";
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function filterAssignments() {
+      let query = document.querySelector('input').value.toLowerCase();
+      let assignments = document.querySelectorAll('.manuals-container .card');
+      assignments.forEach(card => {
+        let title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
