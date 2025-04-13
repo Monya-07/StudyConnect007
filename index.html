@@ -4,14 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Secure Login</title>
+
+  <!-- PWA Essentials -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#667eea" />
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Service Worker -->
   <script>
-     if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js');
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registered:', reg))
+          .catch(err => console.error('Service Worker error:', err));
       });
     }
   </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -26,6 +37,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     .login-box {
@@ -100,6 +112,20 @@
       color: red;
       font-size: 14px;
     }
+
+    #installBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #0d47a1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -116,6 +142,35 @@
     </div>
   </div>
 
+  <!-- Custom Install Button -->
+  <button id="installBtn">Install App</button>
+
+  <!-- Your App Logic -->
   <script src="user.js" defer></script>
+
+  <!-- Install Prompt Logic -->
+  <script>
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+
+      installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choiceResult => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
