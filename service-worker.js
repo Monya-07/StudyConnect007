@@ -2,12 +2,12 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open('study-connect-cache-v1').then(cache => {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/style.css',
-        '/script.js',
-        '/main.js',
-        '/logo.png'
+        './',
+        './index.html',
+        './style.css',
+        './script.js',
+        './main.js',
+        './logo.png'
       ]);
     })
   );
