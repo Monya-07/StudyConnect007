@@ -6,7 +6,7 @@
   <title>Upcoming Exams | Study Connect</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
- :root {
+    :root {
       --primary: #6a11cb;
       --secondary: #4a09a0;
       --bg-light: #f5f5f5;
@@ -181,7 +181,13 @@
   </style>
 </head>
 <body>
-  <div class="header">Study Connect - Upcoming Exams</div>
+  <div class="header">
+    <h1>Study Connect - Upcoming Exams</h1>
+  </div>
+<br><br>
+  <div class="search-container">
+    <input type="text" placeholder="Search exams..." onkeyup="filterExams()">
+  </div>
 
   <div class="section">
     <h2 onclick="toggleSection('sem1')">First Year - Semester 2</h2>
@@ -198,21 +204,6 @@
       </div>
     </div>
   </div>
-<!--
-  <div class="section">
-    <h2 onclick="toggleSection('sem2')">First Year - Semester 2</h2>
-    <div class="notes-container section-content" id="sem2">
-      <div class="card">
-        <img src="https://img.icons8.com/fluency/96/calendar.png" />
-        <h3>Physics Exam - 10th June 2025</h3>
-      </div>
-      <div class="card">
-        <img src="https://img.icons8.com/fluency/96/calendar.png" />
-        <h3>Programming Exam - 15th June 2025</h3>
-      </div>
-    </div>
-  </div>
-  -->
 
   <div class="bottom-nav">
     <a href="dashboard.html">Home</a>
@@ -221,9 +212,10 @@
   </div>
 
   <script>
-  if (localStorage.getItem('isAuthenticated') !== 'true') {
-      window.location.href = "index.html";
+    if (localStorage.getItem('isAuthenticated') !== 'true') {
+        window.location.href = "index.html";
     }
+
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
@@ -231,6 +223,15 @@
     function toggleSection(id) {
       const section = document.getElementById(id);
       section.classList.toggle('active');
+    }
+
+    function filterExams() {
+      let query = document.querySelector('input').value.toLowerCase();
+      let exams = document.querySelectorAll('.notes-container .card');
+      exams.forEach(card => {
+        let title = card.querySelector('h3').innerText.toLowerCase();
+        card.style.display = title.includes(query) ? 'block' : 'none';
+      });
     }
   </script>
 </body>

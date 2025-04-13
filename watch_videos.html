@@ -6,7 +6,7 @@
   <title>Watch Videos | Study Connect</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
- :root {
+    :root {
       --primary: #6a11cb;
       --secondary: #4a09a0;
       --bg-light: #f5f5f5;
@@ -177,12 +177,13 @@
       display: grid;
       margin-top: 10px;
     }
-
   </style>
 </head>
 <body>
-  <div class="header">Study Connect - Watch Videos</div>
-
+  <div class="header">
+    <h1>Study Connect - Watch Videos</h1>
+  </div>
+<br>
   <div class="section">
     <h2 onclick="toggleSection('sem1')">First Year - Semester 1</h2>
     <div class="notes-container section-content" id="sem1">
@@ -200,7 +201,7 @@
       </div>
     </div>
   </div>
-<br><br>
+  <br><br>
   <div class="section">
     <h2 onclick="toggleSection('sem2')">First Year - Semester 2</h2>
     <div class="notes-container section-content" id="sem2">
@@ -226,9 +227,10 @@
   </div>
 
   <script>
-  if (localStorage.getItem('isAuthenticated') !== 'true') {
+    if (localStorage.getItem('isAuthenticated') !== 'true') {
       window.location.href = "index.html";
     }
+
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
