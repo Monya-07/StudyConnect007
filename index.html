@@ -13,14 +13,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Service Worker -->
+  <link rel="apple-touch-icon" href="logo.png">
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('Service Worker registered:', reg))
-          .catch(err => console.error('Service Worker error:', err));
-      });
-    }
+  navigator.serviceWorker.register('./service-worker.js')
+    .then(() => console.log('Service Worker Registered'))
+    .catch(error => console.error('SW Registration failed:', error));
+}
   </script>
 
   <style>
