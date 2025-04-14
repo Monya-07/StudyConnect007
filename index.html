@@ -125,6 +125,24 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       cursor: pointer;
     }
+
+    .admin-btn {
+      width: 100%;
+      padding: 12px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .admin-btn:hover {
+      background: #34495e;
+    }
   </style>
 </head>
 <body>
@@ -139,6 +157,9 @@
       <a href="register.html">I don't have an account</a>
       <a href="#">Renew Token</a>
     </div>
+
+    <!-- Admin Login Button -->
+    <button class="admin-btn" onclick="window.location.href='admin-login.html'">Go to Admin Login</button>
   </div>
 
   <!-- Custom Install Button -->
